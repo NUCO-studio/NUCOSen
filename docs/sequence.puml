@@ -1,0 +1,106 @@
+@startuml "再生キューチケット"
+title <b>オペレーション1</b> 引用管理
+
+participant クライアント as cli
+participant データベース as db
+participant サーバー as serv
+participant ニコニコ as nico
+loop 動画時間長ごと
+    note over serv : タイマー終了
+    db -> serv : POP queueTicket
+    alt queueTicketなし
+        serv -> serv : リクエスト管理のタイマーキャンセル
+        db -> serv : GET all playRequestTicket
+        alt playRequestTicketあり
+            serv -> serv : 抽選実施
+            db <- serv : PUT playRequestTickets status
+            db <- serv : POST queueTickets
+            db -> serv : POP queueTicket
+        else playRequestTicketなし
+            serv -> nico : GET New movie
+            db -> serv : GET last movie posted date
+            alt 新着なし
+                serv -> serv : 選出基準抽選
+                alt データベース準拠
+                    db -> serv : GET movies list
+                    serv -> serv : 抽選実施
+                else ニコニコ検索クエリ準拠
+                    serv -> nico : GET movie
+                    serv -> serv : 抽選実施
+                end
+            end
+        end
+    end
+    serv -> serv : タイマー長算出
+    serv -> nico : QOT movie
+    db <- serv : Move poped ticket to playing with started time
+    note over serv : タイマー開始
+    cli <- db : (update playing ticket)
+    cli -> cli : 引用動画変更・再生
+    serv -> nico : COMMENT movie info
+    alt 前動画が一定数以上のGoodを獲得
+        db <- serv : Copy old playing ticket to good movies list
+    end
+    db <- serv : Move old playing ticket to played
+    cli <- db : (ticket update)
+end
+@enduml
+@startuml "リクエストチケット"
+title "<b>オペレーション2</b> リクエスト管理"
+
+participant クライアント as cli
+participant データベース as db
+participant サーバー as serv
+participant ニコニコ as nico
+
+alt 再生リクエスト
+    cli <- db : GET channel rules
+    cli -> cli : 事前検査
+    cli -> db : playRequest
+else スキップリクエスト
+    cli -> db : skipRequest
+else グッドリクエスト
+    cli -> db : goodRequest
+end
+loop 30秒
+    note over serv : グローバルタイマーで時間管理すること！
+    db -> serv : 定期監視
+    alt 新規playRequest
+        db <- serv : GET channel rules
+        db --> serv : rules
+        alt 有償リクエスト
+            db <- serv : GET payment of user
+            db --> serv : Response\n(payment is valid)
+            db <- serv : POST channel user list
+            alt ニコニコ準拠ルール
+                serv -> nico : GET getthumbinfo
+                serv <-- nico : Response
+            else データベース準拠ルール
+                db <- serv : GET movie info
+                db --> serv : Response
+            end
+        else 無償リクエスト
+            serv -> nico : GET serch
+            serv -> serv : 「はずれ」追加
+            serv -> serv : リクエスト抽選
+            db <- serv : PUT mid
+        end
+        db <- serv : PUT ticketStatus
+        cli <- db : (ticket update)
+    else 新規スキップリクエスト
+        db <- serv : PUT playing movie's ticket
+        db <- serv : DELETE requestTicket
+        db <- serv : GET playing movie's ticket
+        db <- serv : GET skip rule
+        serv -> serv : スキップ判断
+        alt スキップ実施
+            serv -> serv : 引用管理タイマのキャンセル
+        end
+    else 新規グッドリクエスト
+        db <- serv : PUT playing movie's ticket
+        cli <- db : (good count update)
+        db <- serv : DELETE requestTicket
+    end
+    note over serv : 全チケット処理後にタイマー開始
+end
+@enduml
