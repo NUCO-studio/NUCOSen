@@ -1,0 +1,50 @@
+{
+  "rules": {
+    "history_block": {
+      ".indexOn": ".value"
+    },
+    ".read": false,
+    ".write": false,
+    "requests": {
+      ".read": true,
+      "play": {
+        "$requestId": {
+          ".write": "( root.child('user_data').child(auth.uid).child('subscription').exists() && root.child('user_data').child(auth.uid).child('subscription').val() > 0 ) || data.child('uid').val() == auth.uid"
+        }
+      },
+      "good": {
+        "$mid": {
+          "$uid": {
+            ".write": "$uid == auth.uid"
+          }
+        }
+      },
+      "skip": {
+        "$reqid": {
+          ".write": "newData.child('uid').val() == auth.uid"
+        }
+      }
+    },
+    "movies": {
+      ".read": true,
+      "playing": {
+        "watchingUser": {
+          "$uid": {
+            ".write": "$uid == auth.uid"
+          }
+        }
+      }
+    },
+    "password": {
+      ".read": true,
+      "$reqid": {
+        ".write": "newData.child('uid').val() == auth.uid || data.child('uid').val() == auth.uid"
+      }
+    },
+    "user_data": {
+      "$uid": {
+        ".read": "$uid == auth.uid"
+      }
+    }
+  }
+}
