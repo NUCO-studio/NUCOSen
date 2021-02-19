@@ -1,0 +1,67 @@
+a {
+    color: white;
+}
+
+a:hover {
+    color: lightgray;
+}
+
+#niconav {
+    background-color: black;
+}
+
+.logo {
+    font-family: 'Ubahn';
+}
+
+.niconav-item {
+    background-color: black;
+    border-color: black;
+    color: white;
+    border-left: 1.5px solid #333;
+    padding-left: 12px;
+}
+
+.first-item {
+    border-left-style: none;
+}
+
+.centering {
+    text-align: center;
+}
+
+.mobile-controler {
+    color: black;
+    background-color: white;
+}
+
+.background {
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.color-blue {
+    background-image: url('https://3.bp.blogspot.com/-cEA4AXbk3e4/V5XcozPUGnI/AAAAAAAA8qg/MdkPyz2mcwAAe2bHLdcECN7j0o0cnLbMQCLcB/s2000/bg_abstract1_blue.png');
+}
+
+.color-green {
+    background-image: url('https://1.bp.blogspot.com/-kb5eBSh9ahk/V5Xcon54jbI/AAAAAAAA8qc/pimfCuG-qVgNbv0DnlYglK-fSpuyuMzXgCLcB/s2000/bg_abstract2_green.png');
+}
+
+.color-yerrow {
+    background-image: url('https://3.bp.blogspot.com/-Z0QbD1rlaOw/V5XcpEifyxI/AAAAAAAA8qo/uAm0C1pQiZUsuVLDpw2D6DOQIxHc3rEsACLcB/s2000/bg_abstract3_yellow.png');
+}
+
+.color-purple {
+    background-image: url('https://1.bp.blogspot.com/-a6l308tWfwU/V5XcpQWDE1I/AAAAAAAA8qs/udmHzDoc1dgPjnc06DOujogCaGxDqgp4wCLcB/s2000/bg_abstract4_purple.png');
+}
+
+.color-red {
+    background-image: url('https://3.bp.blogspot.com/-qxYpl-yBlfA/V5XcpUW_IuI/AAAAAAAA8qw/pCGPBWMp7LAhLR2eAf-c1a5jbM3YxRjmwCLcB/s2000/bg_abstract5_red.png');
+}
+
+.color-orange {
+    background-image: url('https://2.bp.blogspot.com/-NQk0sDnfQs4/V5XcpjUC4lI/AAAAAAAA8q0/hutW26Gb2E4MKVW_YBGJdpR4Gw0IgDlZwCLcB/s2000/bg_abstract6_orange.png');
+}

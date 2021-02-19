@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'Ubahn';
+    src: url('../font/Ubahn.ttf.woff') format('woff'), url('../font/Ubahn.ttf.svg#Ubahn') format('svg'), url('../font/Ubahn.ttf.eot'), url('../font/Ubahn.ttf.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
