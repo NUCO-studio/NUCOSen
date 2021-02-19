@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="ja" class="has-background-black">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUCOSen 24-hour broadcast</title>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/8.2.7/firebase-app.js"></script>
@@ -17,73 +19,140 @@
     <script defer src="/__/firebase/8.2.7/firebase-analytics.js"></script>
     <script defer src="/__/firebase/8.2.7/firebase-remote-config.js"></script>
     <script defer src="/__/firebase/8.2.7/firebase-performance.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
+    <!-- ! REMOVE EMULATOR FLAG BEFORE DEPLOY -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <link rel="stylesheet" href="css/fonts.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/nucosen.css">
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <script src="js/nucosen.js"></script>
+</head>
+
+<body>
+    <div class="modal" id="paymentmodal">
+        <div class="modal-background" onclick="closeSupportModal()">
+        </div>
+        <div class="modal-content has-background-white has-text-black card box">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut, consequuntur. Nisi recusandae architecto
+                eius minus, aliquam tempora culpa placeat saepe nulla aspernatur id voluptatum quaerat molestias
+                assumenda doloribus? Quaerat, nulla!</p>
+        </div>
+        <button class="modal-close is-large" aria-label="close" onclick="closeSupportModal()"></button>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    <div class="is-hidden-touch background color-red" id="main">
+        <div class="hero is-fullheight">
+            <div class="hero-head has-background-black">
 
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
-    </script>
-  </body>
+                <nav class="navbar is-large is-dark">
+                    <div class="navbar-brand is-size-1">
+                        <a href="#" class="navbar-item px-5">
+                            <h1 class="logo">NUCOSen</h1>
+                        </a>
+                    </div>
+                    <div class="navbar-menu">
+                        <div class="navbar-start">
+                            <a id="supportDays" class="level-item icon-text is-hidden niconav-item first-item" href="">
+                                <span class="icon">
+                                    <span class="mdi mdi-tag-heart"></span>
+                                </span>
+                                <span>残<span id="supportDaysContainer"></span>日</span>
+                            </a>
+                            <a id="supportLink" class="level-item icon-text niconav-item first-item"
+                                style="color: gold;" onclick="openSupportModal()">
+                                <span class="icon">
+                                    <span class="mdi mdi-tag-heart"></span>
+                                </span>
+                                <span>支援</span>
+                            </a>
+                            <span class="level-item icon-text niconav-item">
+                                <div class="dropdown is-right" id="notify">
+                                    <span class="dropdown-trigger is-clickable"
+                                        onclick="document.getElementById('notify').classList.add('is-active')">
+                                        <span class="icon">
+                                            <span id="notifyicon" class="mdi mdi-bell-outline"></span>
+                                        </span>
+                                        <span id="notifycount"></span>
+                                    </span>
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-content">
+                                            <div class="dropdown-item">
+                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit
+                                                quis
+                                                praesentium pariatur expedita aspernatur est quo repellat distinctio
+                                                laborum
+                                                impedit. Et voluptate quisquam molestias consequatur blanditiis possimus
+                                                earum
+                                                nobis
+                                                vel.
+                                            </div>
+                                            <hr class="dropdown-divider">
+                                            <div class="dropdown-item is-clickable icon-text has-text-centered"
+                                                onclick="document.getElementById('notify').classList.remove('is-active')">
+                                                <span class="icon">
+                                                    <span class="mdi mdi-close"></span>
+                                                </span>
+                                                <span>閉じる</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                            <a href="" class="level-item icon-text niconav-item">
+                                <span class="icon-text">
+                                    <span class="icon">
+                                        <span class="mdi mdi-account"></span>
+                                    </span>
+                                    <span>ゲスト</span>
+                                    <span>さん</span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="hero-body">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente suscipit id aliquid rerum similique
+            nulla reprehenderit culpa, voluptatum rem quia dolore dolorem libero doloribus, pariatur ratione
+            omnis ducimus atque sit.</p>
+    </div>
+    </div>
+    </div>
+    <div class="is-hidden-desktop">
+        <div class="hero has-background-black is-fullheight">
+            <div class="hero-head"></div>
+            <div class="hero-body"></div>
+            <div id="controllers" class="hero-foot block columns is-mobile is-centered">
+                <span class="column"></span>
+                <span class="column button mobile-controler icon-text p-2 is-rounded">
+                    <span class="icon">
+                        <span class="mdi mdi-skip-forward"></span>
+                    </span>
+                </span>
+                <span class="column"></span>
+                <span class="column button mobile-controler icon-text p-2 is-rounded">
+                    <span class="icon">
+                        <span class="mdi mdi-play"></span>
+                    </span>
+                </span>
+                <span class="column"></span>
+                <span class="column button mobile-controler icon-text p-2 is-rounded">
+                    <span class="icon">
+                        <span class="mdi mdi-thumb-up"></span>
+                    </span>
+                </span>
+                <span class="column"></span>
+            </div>
+            <div class="has-text-centered">Have a nice NUCOSen.</div>
+        </div>
+    </div>
+</body>
+
 </html>
