@@ -1,5 +1,18 @@
 {
   "projects": {
-    "default": "nucosen-live"
+    "default": "nucosen-live",
+    "prob": "nucosen-live"
+  },
+  "targets": {
+    "nucosen-live": {
+      "hosting": {
+        "prob": [
+          "nucosen-live"
+        ],
+        "test": [
+          "test-7d8d8"
+        ]
+      }
+    }
   }
 }
