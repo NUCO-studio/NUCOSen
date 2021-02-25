@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" class="has-background-black">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,7 @@
     <script defer src="/__/firebase/8.2.7/firebase-analytics.js"></script>
     <script defer src="/__/firebase/8.2.7/firebase-remote-config.js"></script>
     <script defer src="/__/firebase/8.2.7/firebase-performance.js"></script>
-    <!-- ! REMOVE EMULATOR FLAG BEFORE DEPLOY -->
+    <!-- FIXME REMOVE EMULATOR FLAG BEFORE DEPLOY -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
     <link rel="stylesheet" href="css/fonts.css">
@@ -34,123 +34,145 @@
 </head>
 
 <body>
-    <div class="modal" id="paymentmodal">
-        <div class="modal-background" onclick="closeSupportModal()">
+    <!-- モーダル -->
+    <div>
+        <div class="modal" id="paymentmodal">
+            <div class="modal-background" onclick="closeSupportModal()">
+            </div>
+            <div class="modal-content has-background-white has-text-black card box">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut, consequuntur. Nisi recusandae
+                    architecto
+                    eius minus, aliquam tempora culpa placeat saepe nulla aspernatur id voluptatum quaerat molestias
+                    assumenda doloribus? Quaerat, nulla!</p>
+            </div>
+            <button class="modal-close is-large" aria-label="close" onclick="closeSupportModal()"></button>
         </div>
-        <div class="modal-content has-background-white has-text-black card box">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut, consequuntur. Nisi recusandae architecto
-                eius minus, aliquam tempora culpa placeat saepe nulla aspernatur id voluptatum quaerat molestias
-                assumenda doloribus? Quaerat, nulla!</p>
-        </div>
-        <button class="modal-close is-large" aria-label="close" onclick="closeSupportModal()"></button>
     </div>
 
-    <div class="is-hidden-touch background color-red" id="main">
-        <div class="hero is-fullheight">
-            <div class="hero-head has-background-black">
+    <!-- デスクトップ -->
+    <div class="is-hidden-touch">
+        <!-- ナビバー -->
+        <nav class="navbar is-black is-fixed-top">
+            <div class="navbar-brand">
+                <a class="navbar-item px-5" href="https://nucosen.live/">
+                    <div class="image"><img src="img/whitelogo.png"></div>
+                </a>
+            </div>
 
-                <nav class="navbar is-large is-dark">
-                    <div class="navbar-brand is-size-1">
-                        <a href="#" class="navbar-item px-5">
-                            <h1 class="logo">NUCOSen</h1>
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        Item
+                    </a>
+
+                    <a class="navbar-item">
+                        Item
+                    </a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Item
                         </a>
-                    </div>
-                    <div class="navbar-menu">
-                        <div class="navbar-start">
-                            <a id="supportDays" class="level-item icon-text is-hidden niconav-item first-item" href="">
-                                <span class="icon">
-                                    <span class="mdi mdi-tag-heart"></span>
-                                </span>
-                                <span>残<span id="supportDaysContainer"></span>日</span>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">
+                                Item
                             </a>
-                            <a id="supportLink" class="level-item icon-text niconav-item first-item"
-                                style="color: gold;" onclick="openSupportModal()">
-                                <span class="icon">
-                                    <span class="mdi mdi-tag-heart"></span>
-                                </span>
-                                <span>支援</span>
+                            <a class="navbar-item">
+                                Item
                             </a>
-                            <span class="level-item icon-text niconav-item">
-                                <div class="dropdown is-right" id="notify">
-                                    <span class="dropdown-trigger is-clickable"
-                                        onclick="document.getElementById('notify').classList.add('is-active')">
-                                        <span class="icon">
-                                            <span id="notifyicon" class="mdi mdi-bell-outline"></span>
-                                        </span>
-                                        <span id="notifycount"></span>
-                                    </span>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-content">
-                                            <div class="dropdown-item">
-                                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit
-                                                quis
-                                                praesentium pariatur expedita aspernatur est quo repellat distinctio
-                                                laborum
-                                                impedit. Et voluptate quisquam molestias consequatur blanditiis possimus
-                                                earum
-                                                nobis
-                                                vel.
-                                            </div>
-                                            <hr class="dropdown-divider">
-                                            <div class="dropdown-item is-clickable icon-text has-text-centered"
-                                                onclick="document.getElementById('notify').classList.remove('is-active')">
-                                                <span class="icon">
-                                                    <span class="mdi mdi-close"></span>
-                                                </span>
-                                                <span>閉じる</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </span>
-                            <a href="" class="level-item icon-text niconav-item">
-                                <span class="icon-text">
-                                    <span class="icon">
-                                        <span class="mdi mdi-account"></span>
-                                    </span>
-                                    <span>ゲスト</span>
-                                    <span>さん</span>
-                                </span>
+                            <a class="navbar-item">
+                                Item
+                            </a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">
+                                Item
                             </a>
                         </div>
                     </div>
-                </nav>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-black">
+                                <strong>Sign up</strong>
+                            </a>
+                            <a class="button is-light has-background-grey-light">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- メイン -->
+        <div class="hero is-fullheight is-dark">
+            <div class="hero-head"></div>
+            <div class="hero-body has-background-grey-darker">
+                <div class="has-text-centered container">
+                    <div class="content columns is-centered">
+                        <div class="column is-2">
+                            <div class="image">
+                                <img src="https://nicovideo.cdn.nimg.jp/thumbnails/9/9" alt="" srcset="">
+                            </div>
+                        </div>
+                    </div>
+                    <p class="title">新・豪血寺一族 -煩悩解放 - レッツゴー！陰陽師</p>
+                    <p class="subtitle">中の</p>
+                </div>
+            </div>
+            <div class="hero-foot">
+                <div class="has-background-grey-dark">
+                    <div class="container py-5">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta ratione molestiae asperiores
+                            ad
+                            ipsum
+                            consequatur error nam, quo magni porro adipisci tenetur laborum non, animi aperiam
+                            distinctio
+                            debitis
+                            vero enim.</p>
+                    </div>
+                </div>
+                <div class="has-text-centered has-background-grey">
+                    <div class="container py-3">
+                        <span class="icon-text">
+                            <span class="icon is-size-3">
+                                <span class="mdi mdi-chevron-double-down"></span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="hero-body">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente suscipit id aliquid rerum similique
-            nulla reprehenderit culpa, voluptatum rem quia dolore dolorem libero doloribus, pariatur ratione
-            omnis ducimus atque sit.</p>
-    </div>
-    </div>
-    </div>
-    <div class="is-hidden-desktop">
-        <div class="hero has-background-black is-fullheight">
-            <div class="hero-head"></div>
-            <div class="hero-body"></div>
-            <div id="controllers" class="hero-foot block columns is-mobile is-centered">
-                <span class="column"></span>
-                <span class="column button mobile-controler icon-text p-2 is-rounded">
-                    <span class="icon">
-                        <span class="mdi mdi-skip-forward"></span>
-                    </span>
-                </span>
-                <span class="column"></span>
-                <span class="column button mobile-controler icon-text p-2 is-rounded">
-                    <span class="icon">
-                        <span class="mdi mdi-play"></span>
-                    </span>
-                </span>
-                <span class="column"></span>
-                <span class="column button mobile-controler icon-text p-2 is-rounded">
-                    <span class="icon">
-                        <span class="mdi mdi-thumb-up"></span>
-                    </span>
-                </span>
-                <span class="column"></span>
+
+        <div class="has-background-grey-light">
+            <div class="columns is-centered py-6">
+                <div class="column is-3">
+                    <div class="box has-background-info has-text-centered has-text-info-light contaienr">
+                        <p>Contents</p>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="box has-background-info has-text-centered has-text-info-light container">
+                        <p>Contents</p>
+                    </div>
+                </div>
             </div>
-            <div class="has-text-centered">Have a nice NUCOSen.</div>
+            <div class="footer has-background-grey-lighter">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut porro fugit, est, ex suscipit dolore
+                    cupiditate error labore placeat, temporibus dolorem? Laborum consequuntur temporibus vitae numquam
+                    repellat, sequi recusandae eius.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- モバイル端末 -->
+    <div class="is-hidden-desktop">
+        <div class="hero is-fullheight">
+
         </div>
     </div>
 </body>
