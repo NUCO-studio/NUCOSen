@@ -18,7 +18,7 @@
   },
   "hosting": [
     {
-      "target":"prob",
+      "target": "prob",
       "public": "public",
       "ignore": [
         "firebase.json",
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "target":"test",
+      "target": "test",
       "public": "public",
       "ignore": [
         "firebase.json",
