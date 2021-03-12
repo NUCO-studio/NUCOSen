@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.9.55/css/materialdesignicons.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@creativebulma/bulma-tooltip@1.2.0/dist/bulma-tooltip.min.css">
     <link rel="stylesheet" href="css/nucosen.css">
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -54,8 +56,8 @@
         <!-- ナビバー -->
         <nav class="navbar is-black is-fixed-top">
             <div class="navbar-brand">
-                <a class="navbar-item px-5" href="https://nucosen.live/">
-                    <div class="image"><img src="img/whitelogo.png"></div>
+                <a class="navbar-item" href="https://nucosen.live/">
+                    <div class="image is-24x24"><img src="img/whitelogo.png"></div>
                 </a>
             </div>
 
@@ -90,6 +92,16 @@
                             </a>
                         </div>
                     </div>
+
+                    <div class="navbar-item is-hoverable">
+                        <input class="input is-small navbar-link has-background-black" type="text"
+                            placeholder="クイックリクエスト">
+                        <div class="navbar-dropdown">
+                            <span class="navbar-item">
+                                ここに動画URLをコピー＆ペースト！
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="navbar-end">
@@ -112,6 +124,14 @@
             <div class="hero-head"></div>
             <div class="hero-body has-background-grey-darker">
                 <div class="has-text-centered container">
+                    <p class="is-user-request tag block has-tooltip-arrow has-tooltip-bottom"
+                        data-tooltip="支援ユーザーがリクエストした動画です">ユーザーリクエスト</p>
+                    <p class="is-pickup tag block has-tooltip-arrow has-tooltip-bottom"
+                        data-tooltip="対象タグからランダムに選ばれた動画です">ピックアップ</p>
+                    <p class="is-new-arrival tag block has-tooltip-arrow has-tooltip-bottom"
+                        data-tooltip="最近投稿されたばかりの動画です">新着動画</p>
+                    <p class="is-collection tag block has-tooltip-arrow has-tooltip-bottom"
+                        data-tooltip="Goodを多く集めた動画です">コレクション</p>
                     <div class="content columns is-centered">
                         <div class="column is-2">
                             <div class="image">
@@ -150,9 +170,78 @@
         <div class="has-background-grey-light">
             <div class="columns is-centered py-6">
                 <div class="column is-3">
-                    <div class="box has-background-info has-text-centered has-text-info-light contaienr">
-                        <p>Contents</p>
-                    </div>
+                    <nav class="panel has-background-white">
+                        <p class="panel-heading has-background-info-dark has-text-white">
+                            Wait List
+                        </p>
+                        <div class="panel-block">
+                            <div class="columns is-vcentered">
+                                <div class="column is-narrow">
+                                    <span class="is-size-1">1</span>
+                                </div>
+                                <div class="column is-narrow">
+                                    <span class="image is-64x64">
+                                        <img src="https://identicon-api.herokuapp.com/TESTER/64?format=png" alt="">
+                                    </span>
+                                </div>
+                                <div class="column">TESTER</div>
+                            </div>
+                        </div>
+                        <div class="panel-block">
+                            <div class="columns is-vcentered">
+                                <div class="column is-narrow">
+                                    <span class="is-size-1">2</span>
+                                </div>
+                                <div class="column is-narrow">
+                                    <span class="image is-64x64">
+                                        <img src="https://img.cdn.nimg.jp/s/comch/community-icon/original/co5073202/7037449.jpg/a1024x1024l_FFFFFFFF?key=46d085e243b7a55621452f3b4094984f7bc07d8cf4c7c2a1462064185aa2f1c9"
+                                            alt="">
+                                    </span>
+                                </div>
+                                <div class="column">あいうえおあいうえおあいうえおあ</div>
+                            </div>
+                        </div>
+                        <div class="panel-block">
+                            <div class="columns is-vcentered">
+                                <div class="column is-narrow">
+                                    <span class="is-size-1">3</span>
+                                </div>
+                                <div class="column is-narrow">
+                                    <span class="image is-64x64">
+                                        <img src="https://identicon-api.herokuapp.com/あいうえお/64?format=png" alt="">
+                                    </span>
+                                </div>
+                                <div class="column">あいうえお</div>
+                            </div>
+                        </div>
+                        <div class="panel-block">
+                            <div class="columns is-vcentered">
+                                <div class="column is-narrow">
+                                    <span class="is-size-1">4</span>
+                                </div>
+                                <div class="column is-narrow">
+                                    <span class="image is-64x64">
+                                        <img src="https://identicon-api.herokuapp.com/SAMPLE/64?format=png" alt="">
+                                    </span>
+                                </div>
+                                <div class="column">SAMPLE</div>
+                            </div>
+                        </div>
+                        <div class="panel-block">
+                            <div class="columns is-vcentered">
+                                <div class="column is-narrow">
+                                    <span class="is-size-1">5</span>
+                                </div>
+                                <div class="column is-narrow">
+                                    <span class="image is-64x64">
+                                        <img src="https://identicon-api.herokuapp.com/さんぷる/64?format=png" alt="">
+                                    </span>
+                                </div>
+                                <div class="column">さんぷる</div>
+                            </div>
+                        </div>
+
+                    </nav>
                 </div>
                 <div class="column is-6">
                     <div class="box has-background-info has-text-centered has-text-info-light container">

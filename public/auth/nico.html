@@ -22,18 +22,15 @@
     <!-- FIXME REMOVE EMULATOR FLAG BEFORE DEPLOY -->
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <script>var result;</script>
-
-    <script src="js/string.js"></script>
-    <script src="js/http.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            let query = getQueryString(location.search)
-
-            // TODO check state
-            console.log(query.code);
-            getToken(query.code);
+            if (location.search == "") {
+                location.href = "https://oauth.nicovideo.jp/oauth2/authorize"
+                    + "?client_id=Ux6enUTxHUFI0PAc"
+                    + "&response_type=code"
+                    + "&redirect_uri=https%3A%2F%2Ftest.nucosen.live%2Fauth%2F"
+                    + "&state=teststate"
+            }
         });
     </script>
 

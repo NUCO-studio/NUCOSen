@@ -1,3 +1,35 @@
 .logo {
     font-family: 'Ubahn';
 }
+
+.input::placeholder {
+    color: white;
+}
+
+.input:-ms-input-placeholder {
+    color: white;
+}
+
+.input::-ms-input-placeholder {
+    color: white;
+}
+
+p.is-user-request{
+    background-color: #3264C2;
+    color: white;
+}
+
+p.is-pickup{
+    background-color: #1B5100;
+    color: white;
+}
+
+p.is-new-arrival{
+    background-color: #E22200;
+    color: white;
+}
+
+p.is-collection{
+    background-color: #E8CE00;
+    color: black;
+}
