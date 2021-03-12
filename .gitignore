@@ -133,3 +133,8 @@ dmypy.json
 
 # VSCode settings
 .vscode
+
+# firebase modules
+functions/node_modules/
+
+*.cache
