@@ -1,0 +1,135 @@
+@startuml main
+participant "__main__" as main
+
+activate main
+
+
+
+@enduml
+@startuml quoteNextMovie
+title <b>Quote next movie</b>
+participant __main__ as main
+participant DB as db
+participant LiveServer2 as live2
+participant LiveAPI as lapi
+participant Account as account
+participant Niconico as www
+participant SearchAPI as search
+
+-> main : channel ID
+
+activate main
+
+main -> db : GET channel Info
+activate db
+main <- db : session cache
+main <- db : community ID
+deactivate db
+
+main -> db : GET oldest queue
+activate db
+main <- db : play ticket\n or Empty
+deactivate db
+
+alt empty queue
+    main -> db : GET requests
+    activate db
+    main <- db : request tickets\n or Empty
+    deactivate db
+
+    alt empty request
+        main -> db : GET newest movie search query
+        activate db
+        main <- db : search query
+        deactivate db
+
+        main -> db : GET newest played movie
+        activate db
+        main <- db : newest played movie ID
+        deactivate db
+
+        main -> search : GET api/v2/snapshot/video/contents/search
+        activate search
+        main <- search : result
+        deactivate search
+
+        main -> main : check new arrival movie
+
+        alt No new arrival movie
+            main -> db : GET random search query
+            activate db
+            db <- main : query list
+            deactivate db
+
+            main -> main : choice query
+            alt database query
+                main -> db : GET movies
+                activate db
+                main <- db : mobies list
+                deactivate db
+            else search query
+                main -> search : GET api/v2/snapshot/video/contents/search
+                activate search
+                main <- search : result
+                deactivate search
+            end
+
+            main -> main : select movie
+        end
+    end
+end
+
+
+
+alt nucosen offical
+    main -> www : GET (root)
+    activate www
+    main <- www : 200
+    deactivate www
+
+    alt session dead
+        main -> account : POST login/redirector
+        activate account
+        main -> account : mail_tel
+        main -> account : password
+        main <- account : Found (with cookie)
+        deactivate account
+    end
+
+    main -> live2 : GET unama/tool/v1/broadcasters/social_group/:sid/program
+    activate live2
+    main <- live2 : 200 nicoliveProgramId
+    deactivate live2
+    
+    main -> lapi : POST v1/tools/live/contents/:contentsId/quotation
+    activate lapi
+    main <- lapi : 200
+    deactivate lapi
+end
+
+main -> lapi : GET v1/tools/live/quote/services/video/contents/:contentId
+activate lapi
+main <- lapi : movie length
+deactivate lapi
+
+main -> db : GET playing info
+activate db
+main <- db : (old) playing movie info
+main <- db : reaction tickets
+deactivate db
+
+main -> db : POST playing info
+activate db
+main -> db : content ID
+main -> db : start time
+main <- db : 200
+deactivate db
+
+main -> db : POST play log
+activate db
+main <- db : 200
+deactivate db
+
+<- main : movie length
+
+@enduml
